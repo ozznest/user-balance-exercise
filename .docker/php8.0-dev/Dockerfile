@@ -1,7 +1,6 @@
 ARG PHP_VER
 
 FROM php:${PHP_VER}-fpm-alpine
-
 RUN apk update
 RUN apk add --no-cache build-base
 RUN apk add --no-cache autoconf

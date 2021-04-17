@@ -2,10 +2,10 @@
 
 namespace User\Balance\Repository;
 
-use Doctrine\ORM\Query;
-use User\Balance\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
+use User\Balance\Entity\User;
 
 /**
  * @method User|null find($id, $lockMode = null, $lockVersion = null)
@@ -35,8 +35,6 @@ class UserRepository extends ServiceEntityRepository
 
     /**
      * Find and return user by user id and return in array.
-     *
-     * @param int $userId
      *
      * @return mixed[]
      */

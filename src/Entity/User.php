@@ -5,7 +5,7 @@ namespace User\Balance\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * User
+ * User.
  *
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="User\Balance\Repository\UserRepository")

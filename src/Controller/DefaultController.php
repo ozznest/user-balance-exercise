@@ -16,7 +16,7 @@ class DefaultController extends AbstractController
         methods: ['GET']
     )]
     public function index(): Response
-    {;
+    {
         $users = $this->getDoctrine()
             ->getRepository(User::class)
             ->getUsers();
@@ -37,9 +37,7 @@ class DefaultController extends AbstractController
             ->getUser($id);
 
         if (!$user) {
-            throw $this->createNotFoundException(
-                'No user found for id '.$id
-            );
+            throw $this->createNotFoundException('No user found for id ' . $id);
         }
 
         return $this->json(['user' => $user]);
@@ -53,15 +51,13 @@ class DefaultController extends AbstractController
     )]
     public function decreaseBalance(int $id, Request $request): Response
     {
-        /* @var $user \User\Balance\Entity\User */
+        /** @var \User\Balance\Entity\User $user */
         $user = $this->getDoctrine()
             ->getRepository(User::class)
             ->find($id);
 
         if (!$user) {
-            throw $this->createNotFoundException(
-                'No user found for id '.$id
-            );
+            throw $this->createNotFoundException('No user found for id ' . $id);
         }
         $value = (float) $request->get('value');
         $result = $user->decreaseBalance($value);
@@ -81,15 +77,13 @@ class DefaultController extends AbstractController
     )]
     public function increaseBalance(int $id, Request $request): Response
     {
-        /* @var $user \User\Balance\Entity\User */
+        /** @var \User\Balance\Entity\User $user */
         $user = $this->getDoctrine()
             ->getRepository(User::class)
             ->find($id);
 
         if (!$user) {
-            throw $this->createNotFoundException(
-                'No user found for id '.$id
-            );
+            throw $this->createNotFoundException('No user found for id ' . $id);
         }
         $value = (float) $request->get('value');
         $user->increaseBalance($value);
