@@ -2,6 +2,8 @@
 
 namespace User\Balance\Entity;
 
+use DateTime;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -49,12 +51,6 @@ class User
      */
     private $address;
 
-    /**
-     * @var float|null
-     *
-     * @ORM\Column(name="balance", type="float", precision=11, scale=2, nullable=true, options={"default"="0.00"})
-     */
-    private $balance = 0.00;
 
     /**
      * @var bool|null
@@ -64,18 +60,20 @@ class User
     private $status = '0';
 
     /**
-     * @var \DateTime|null
+     * @var DateTime|null
      *
      * @ORM\Column(name="created_at", type="datetime", nullable=true, options={"default"="CURRENT_TIMESTAMP"})
      */
     private $createdAt = 'CURRENT_TIMESTAMP';
 
     /**
-     * @var \DateTime|null
+     * @var DateTime|null
      *
      * @ORM\Column(name="updated_at", type="datetime", nullable=true, options={"default"="CURRENT_TIMESTAMP"})
      */
     private $updatedAt = 'CURRENT_TIMESTAMP';
+
+
 
     public function getId(): ?int
     {
@@ -130,17 +128,7 @@ class User
         return $this;
     }
 
-    public function getBalance(): ?float
-    {
-        return $this->balance;
-    }
 
-    public function setBalance(?float $balance): self
-    {
-        $this->balance = $balance;
-
-        return $this;
-    }
 
     public function getStatus(): ?bool
     {
@@ -154,24 +142,24 @@ class User
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreatedAt(): ?DateTimeInterface
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(?\DateTimeInterface $createdAt): self
+    public function setCreatedAt(?DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeInterface
+    public function getUpdatedAt(): ?DateTimeInterface
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    public function setUpdatedAt(?DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 
@@ -180,16 +168,16 @@ class User
 
     public function decreaseBalance(float $decrease): bool
     {
-        if ($this->balance < $decrease) {
+        if ($this->balance->getBalance() < $decrease) {
             return false;
         }
-        $this->balance = $this->balance - $decrease;
+        $this->balance->setBalance($this->balance->getBalance() - $decrease) ;
 
         return true;
     }
 
     public function increaseBalance(float $increase): void
     {
-        $this->balance = $this->balance + $increase;
+        $this->balance->setBalance($this->balance->getBalance() + $increase);
     }
 }

@@ -4,7 +4,7 @@ doctrine_migrations:
     'User\Balance\Migrations': '%kernel.project_dir%/src/Migrations'
 
   # Connection to use for the migrations
-  connection: default
+  #connection: default
 
   storage:
     # Default (SQL table) metadata storage configuration
@@ -25,4 +25,6 @@ doctrine_migrations:
 
   # Adds an extra check in the generated migrations to ensure that is executed on the same database type.
   check_database_platform: true
+
+  em: default
 

@@ -25,10 +25,20 @@ services:
       - "9000:9000"
     environment:
       PHP_IDE_CONFIG: serverName=docker
+      PHP_XDEBUG_DEFAULT_ENABLE: ${PHP_XDEBUG_DEFAULT_ENABLE}
+      PHP_XDEBUG_REMOTE_ENABLE: ${PHP_XDEBUG_REMOTE_ENABLE}
+      PHP_XDEBUG_REMOTE_HOST: ${PHP_XDEBUG_REMOTE_HOST}
+      PHP_XDEBUG_REMOTE_PORT: ${PHP_XDEBUG_REMOTE_PORT}
+      PHP_XDEBUG_REMOTE_AUTO_START: ${PHP_XDEBUG_REMOTE_AUTO_START}
+      PHP_XDEBUG_REMOTE_CONNECT_BACK: ${PHP_XDEBUG_REMOTE_CONNECT_BACK}
+      PHP_XDEBUG_IDEKEY: ${PHP_XDEBUG_IDEKEY}
+      PHP_XDEBUG_PROFILER_ENABLE: ${PHP_XDEBUG_PROFILER_ENABLE}
+      PHP_XDEBUG_PROFILER_OUTPUT_DIR: ${PHP_XDEBUG_PROFILER_OUTPUT_DIR}
     #user: 1000:1000
     volumes:
       - ~/.composer/cache/:/.composer_cache/:rw
       - ./:/app:rw
+
     working_dir: /app
 
   mysql:
@@ -38,7 +48,7 @@ services:
     volumes:
       - db_data:/var/lib/mysql/
     ports:
-      - 3306:3306
+      - 3307:3306
     healthcheck:
       test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
       timeout: 20s

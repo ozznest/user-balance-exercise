@@ -85,7 +85,8 @@ RUN docker-php-ext-enable pcntl
 ADD conf.ini /usr/local/etc/php/conf.d/
 RUN chmod +r /usr/local/etc/php/conf.d/conf.ini
 COPY www.conf /usr/local/etc/php-fpm.d/www.conf
-
+COPY xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+RUN chmod +r /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 RUN rm -rf /var/cache/apk/* /var/tmp/* /tmp/*
 
 WORKDIR /app
